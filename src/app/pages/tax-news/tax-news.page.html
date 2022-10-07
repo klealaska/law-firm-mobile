@@ -1,0 +1,44 @@
+<ion-header>
+    <app-header></app-header>
+</ion-header>
+<ion-content>
+    <ion-grid>
+        <ion-row *ngIf="imageUrl!=null">
+            <ion-col>
+                <ion-card class="banner {{colorOverlay}}" [style.background-image]="'url('+ imageUrl +')'" style="--background:no-repeat center/cover;">
+                    <ion-card-header>
+                        <ion-row>
+                            <img class="tax-icon" src="/assets/images/Path728.png">
+                            <ion-card-subtitle>{{lawName}}</ion-card-subtitle>
+                        </ion-row>
+                        <ion-card-title>{{title}}</ion-card-title>
+                    </ion-card-header>
+                    <ion-card-content>
+                        {{description}}
+                    </ion-card-content>
+                </ion-card>
+            </ion-col>
+        </ion-row>
+        <div class="tax-news-content">
+            <div *ngFor="let data of taxNewsData;index as i">
+                <ion-row *ngIf="setLink(data.taxNewsAttachments, 'en-US')!=null||setLink(data.taxNewsAttachments, 'sq-AL')!=null ">
+                    <ion-col size-md="8" size-sm="12" size="12">
+                        <h6 class="news-title ">{{data.title}}</h6>
+                        <div class="news-pdf" *ngIf="setLink(data.taxNewsAttachments, 'sq-AL')!=null">
+                            Please click here for the <a [attr.href]="setLink(data.taxNewsAttachments, 'sq-AL')" class="news-span ">Albanian</a> version
+                        </div>
+                        <div class="news-pdf" *ngIf="setLink(data.taxNewsAttachments, 'en-US')!=null ">
+                            Please click here for the <a [attr.href]="setLink(data.taxNewsAttachments, 'en-US')" class="news-span">English</a> version
+                        </div>
+                        <div *ngIf="setLink(data.taxNewsAttachments, 'sq-AL')!=null " class="news-date ">
+                            {{data.publishedDate |date: 'dd/MM/yyyy'}}</div>
+                    </ion-col>
+                    <ion-col *ngIf="data.imageUrl!=null" size-md="4" size-sm="12" size="12">
+                        <img class="tax-news-img" [src]="data.imageUrl">
+                    </ion-col>
+                </ion-row>
+                <hr class="horizontal-line" />
+            </div>
+        </div>
+    </ion-grid>
+</ion-content>

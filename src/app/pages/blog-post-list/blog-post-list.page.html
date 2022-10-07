@@ -1,0 +1,57 @@
+<ion-header>
+    <app-header></app-header>
+</ion-header>
+<ion-content>
+    <!-- Breadcrumb -->
+    <ul class="breadcrumb">
+        <li><a [routerLink]="['/blog-posts']">Këndi i diskutimeve</a>
+            <ion-icon name="chevron-forward-outline" style="color: var(--ion-color-black);"></ion-icon>
+        </li>
+        <li><a>{{categoryName}}</a>
+        </li>
+    </ul>
+    <!-- end Breadcrumb -->
+    <ion-grid>
+        <ion-row *ngIf="blogPostList.length>0">
+            <ng-container *ngFor="let data of blogPostList">
+                <ion-col size-md="6" size-sm="12" size="12">
+                    <div [routerLink]="['/blog-post-view', data.id]">
+                        <ion-card *ngIf="data.imageUrl!=null" class="banner overlay" [style.background-image]="'url('+ data.imageUrl +')'" style="--background:no-repeat center/cover;">
+                            <ion-card-header>
+                                <ion-row>
+                                    <ion-card-subtitle class="blog-title">{{data.title}}</ion-card-subtitle>
+                                </ion-row>
+                                <ion-icon name="chevron-down-outline" class="chevron-icon"></ion-icon>
+                            </ion-card-header>
+                            <ion-card-content class="banner-content" [innerHTML]="data.description">
+                            </ion-card-content>
+                            <div *ngIf="data.imageUrl!=null" class="read-more">
+                                <ion-icon name="chevron-forward-outline"></ion-icon><a style="color:#FFFFFF;">Read
+                                    more</a>
+                            </div>
+                        </ion-card>
+                    </div>
+                    <ion-card *ngIf="data.imageUrl==null" [ngStyle]="{
+                    'background-color': (data.imageUrl==null) ? '#f5f6fa' : ''}" [routerLink]="['/blog-post-view', data.id]" class="banner">
+                        <ion-card-header>
+                            <ion-row>
+                                <ion-card-subtitle class="blog-title black">{{data.title}}</ion-card-subtitle>
+                            </ion-row>
+                            <ion-icon name="chevron-down-outline" class="black"></ion-icon>
+                        </ion-card-header>
+                        <ion-card-content class="banner-content black" [innerHTML]="data.description">
+                        </ion-card-content>
+                        <div class="read-more">
+                            <ion-icon name="chevron-forward-outline" style="color: #AA272F;"></ion-icon><a>Read
+                                more</a>
+                        </div>
+                    </ion-card>
+                </ion-col>
+            </ng-container>
+            <ion-infinite-scroll threshold="100px" (ionInfinite)="loadData($event)" *ngIf="blogPostList.length>=5">
+                <ion-infinite-scroll-content loadingSpinner="lines">
+                </ion-infinite-scroll-content>
+            </ion-infinite-scroll>
+        </ion-row>
+    </ion-grid>
+</ion-content>

@@ -1,0 +1,31 @@
+<ion-header translucent>
+    <ion-toolbar>
+        <ion-title>Notifications</ion-title>
+        <ion-buttons slot="end">
+            <ion-button class="close-button" (click)="dismiss()">Close</ion-button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+<ion-content>
+    <ion-grid class="ion-no-margin">
+        <div *ngFor="let notification of notificationList;let i =index">
+            <ion-row (click)="route(notification?.notification.link)">
+                <ion-col size="10">
+                    <span class="title">{{notification?.notification.title}}</span>
+                </ion-col>
+                <ion-col size="2" class="time-col">
+                    <span class="time">{{notification.time}}</span>
+                </ion-col>
+                <ion-col size="12">
+                    <span class="content">{{notification?.notification.description}}</span>
+                </ion-col>
+            </ion-row>
+            <hr class="horizontal-line" *ngIf="i<notificationList.length-1">
+        </div>
+        <ion-row *ngIf="notificationList.length===0">
+            <ion-col>
+                <span class="content no-notif">You do not have notifications</span>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+</ion-content>

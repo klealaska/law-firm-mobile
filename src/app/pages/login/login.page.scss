@@ -1,0 +1,93 @@
+ion-input {
+    border-radius: 0px;
+    border: 0.8px solid #E3E3E3;
+    font-size: 14px;
+    height: calc(1.5em + .75rem + 2px);
+    padding-left: 28px !important;
+}
+
+.login-label {
+    font-size: 17px;
+    font-family: DINregular;
+    color: var(--ion-color-grey-tint);
+}
+
+.login-span {
+    font-size: 14px;
+    font-family: DINregular;
+    color: var(--ion-color-blue-shade);
+    margin-left: 3px;
+}
+
+.forgot-pass {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.login-link {
+    text-decoration: none;
+}
+
+.register-section {
+    .header-label {
+        font-size: 17px;
+        font-family: DINregular;
+    }
+    ion-input {
+        border-radius: 0px;
+        border: 0.8px solid #E3E3E3;
+        font-size: 14px;
+        height: calc(1.5em + .75rem + 2px);
+        padding-left: 0 !important;
+    }
+    .register-section-label {
+        font-size: 17px;
+        color: var(--ion-color-grey-tint);
+        font-family: DINregular;
+    }
+    .register-section-heading {
+        margin-top: 10px;
+    }
+    .form-label {
+        font-size: 14px;
+        font-family: DINregular;
+        color: var(--ion-color-grey-tint);
+    }
+    .register-section-para {
+        font-size: 13px;
+        margin-top: 10px;
+    }
+    .register-link {
+        font-size: 13px;
+        font-family: DINregular;
+        color: var(--ion-color-grey);
+    }
+    ion-checkbox {
+        transform: translate(-2px, 4px);
+        --size: 0.9rem;
+    }
+    ion-button {
+        margin-top: 15px;
+    }
+    ion-item {
+        border-radius: 0px;
+        border: 0.8px solid #E3E3E3;
+        height: calc(1.5em + .75rem + 2px);
+    }
+    .select-label {
+        margin: 0 0 10px 0;
+        position: absolute;
+    }
+    ion-select {
+        padding: 0;
+        color: var(--ion-color-grey);
+        font-size: 14px;
+        font-family: DINregular;
+        margin: 0 0 10px 0;
+        width: 100%;
+        max-width: 100%;
+    }
+    .register-button {
+        --background: var(--ion-color-black-tint);
+    }
+}

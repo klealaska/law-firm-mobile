@@ -1,0 +1,8 @@
+<ion-list-header>
+    <ion-label>In this article</ion-label>
+</ion-list-header>
+<ion-list *ngFor="let article of articlesArray" lines="none" class="no-padding">
+    <ion-item id={{article.code}} (click)="scrollInArticle(article.code)" [ngClass]="{ 'active': fragment.fragmentCopy === article.code}">
+        {{article.title}}
+    </ion-item>
+</ion-list>

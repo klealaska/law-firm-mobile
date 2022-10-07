@@ -1,0 +1,71 @@
+.video-button {
+    width: 100%;
+    font-size: 13px;
+    --background: black;
+    --border-radius: 0px;
+    margin: 0;
+    text-transform: uppercase;
+    font-family: DINregular;
+}
+
+.home-button {
+    margin-left: 0.5rem;
+    font-family: DINregular;
+    font-size: 13px;
+    text-transform: uppercase;
+    --border-radius: 0px;
+    color: var(--ion-color-white);
+    --border-color: var(--ion-color-white);
+}
+
+iframe {
+    width: 80%;
+}
+
+ion-card {
+    border-radius: 0px;
+    margin: 0;
+}
+
+ion-card-subtitle {
+    font-family: DINregular;
+    text-transform: uppercase;
+    margin-left: 0.3rem;
+    font-size: 12px;
+}
+
+ion-card-title {
+    text-transform: uppercase;
+    font-family: DINBold;
+    font-size: 15px;
+}
+
+ion-card-content {
+    font-family: DINregular;
+    line-height: 21px;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+    height: 88px;
+}
+
+.home-card {
+    z-index: 100;
+}
+
+.Transparent {
+    .home-button {
+        margin-left: 0.5rem;
+        --background: var(--ion-color-black);
+        font-family: DINregular;
+        font-size: 13px;
+        text-transform: uppercase;
+        --border-radius: 0px;
+        --border-color: var(--ion-color-black);
+    }
+}
+
+.taxnews-card {
+    z-index: 100;
+}

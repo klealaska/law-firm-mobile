@@ -1,0 +1,102 @@
+<ion-header>
+    <app-header></app-header>
+</ion-header>
+<ion-content>
+    <ion-grid class="no-padding">
+        <ion-row class="breadcrumb-row">
+            <ion-col size="11">
+                <!-- Breadcrumb -->
+                <ul class="breadcrumb">
+                    <li>
+                        <span class="breadcrumb-span">{{groupName}}<ion-icon name="chevron-forward-outline"></ion-icon>
+                        </span>
+                    </li>
+                    <li>
+                        <span class="breadcrumb-span">{{lawName}}<ion-icon name="chevron-forward-outline"></ion-icon>
+                        </span>
+                    </li>
+                    <li><span class="breadcrumb-span">{{categoryName}}</span>
+                    </li>
+                </ul>
+                <div class="prev-next" *ngIf="searchText.length>0">
+                    <ion-icon name="chevron-back-circle"></ion-icon>
+                    <span (click)="findPrev(categoryCode)">&nbsp;PREV&nbsp;</span>
+                    <span (click)="findNext(categoryCode)">NEXT&nbsp;</span>
+                    <ion-icon name="chevron-forward-circle"></ion-icon>
+                </div>
+                <!-- end Breadcrumb -->
+            </ion-col>
+            <ion-col size="1">
+                <ion-icon name="ellipsis-horizontal-outline" class="ellipsis-icon" (click)="presentPopover($event)">
+                </ion-icon>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+    <ion-grid class="law-grid" id="{{categoryCode}}">
+        <ion-row class="law-header">
+            <ion-col size="12" class="law-col">
+                <h3 class="neni-heading">{{lawName}}</h3>
+            </ion-col>
+            <ion-col size="12" class="icon-col">
+                <ul class="no-padding no-margin icon-list">
+                    <li>
+                        <ion-img src="/assets/images/history.svg" matTooltip="Versions" (click)="openVersionsModal(lawId)"></ion-img>
+                    </li>
+                </ul>
+            </ion-col>
+        </ion-row>
+        <div>
+            <ion-row class="law-header law-row">
+                <ion-col size="12" class="law-col">
+                    <h3 class="neni-heading">{{categoryName}}</h3>
+                </ion-col>
+                <ion-col size="12" class="icon-col">
+                    <ul class="no-padding no-margin icon-list">
+                        <li>
+                            <ion-img src="/assets/images/link.svg" (click)="openCopyAlert(categoryCode)"></ion-img>
+                        </li>
+                        <!-- <li>
+                            <ion-img src="/assets/images/history.svg"></ion-img>
+                        </li> -->
+                        <li>
+                            <ion-img src="/assets/images/download.svg" (click)="createPdf(null,categoryCode)"></ion-img>
+                        </li>
+                    </ul>
+                </ion-col>
+            </ion-row>
+            <div *ngFor="let data of chapterWithSections ">
+                <div id="{{data.code}}article" [ngStyle]="{'background-color':data.isOverview?'#c0989b3b':''}">
+                    <ion-row class="article-header law-row" [ngStyle]="{'background-color':data.isOverview?'#c0989b3b':''}">
+                        <ion-col size="12" class="law-col">
+                            <h3 class="neni-heading" id="{{data.code}}">{{data.title}}</h3>
+                        </ion-col>
+                        <ion-col size="12" class="icon-col">
+                            <ul class="no-padding no-margin icon-list">
+                                <li>
+                                    <ion-img src="/assets/images/link.svg" (click)="openCopyAlert(data.code)"></ion-img>
+                                </li>
+                                <li>
+                                    <ion-img src="/assets/images/info-circle.svg" [ngClass]="{'isDisabled':data.relatedLinks.length==0}" (click)="openRelatedLinksAlert(data.id)"></ion-img>
+                                </li>
+                                <li>
+                                    <ion-img src="/assets/images/download.svg" (click)="createPdf(data,null)">
+                                    </ion-img>
+                                </li>
+                                <li>
+                                    <ion-img *ngIf="!data.isBookmarked" src="/assets/images/star-regular.svg" (click)="addBookmark(data)"></ion-img>
+                                    <ion-img *ngIf="data.isBookmarked" src="/assets/images/star-solid.svg" (click)="addBookmark(data)"></ion-img>
+                                </li>
+                            </ul>
+                        </ion-col>
+                    </ion-row>
+                    <ion-row *ngIf="data.content!=null">
+                        <ion-col>
+                            <div class="neni-content" [innerHtml]="data.content" textToHighlight [textToHighlight]="searchText" [markjsConfig]="searchConfig" [scrollToFirstMarked]="true">
+                            </div>
+                        </ion-col>
+                    </ion-row>
+                </div>
+            </div>
+        </div>
+    </ion-grid>
+</ion-content>

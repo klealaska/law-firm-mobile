@@ -1,0 +1,52 @@
+.bookmarks-col {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.bookmarks-header {
+    font-size: 15px;
+    color: var(--ion-color-black);
+    font-family: DINNextLTPro-Regular;
+    text-transform: uppercase;
+}
+
+.bookmark-content {
+    color: var(--ion-color-black);
+    font-family: DINNextLTPro-Regular;
+    font-size: 14px;
+}
+
+.no-date-bookmark {
+    background-color: #f3f3f3;
+    padding: 6px;
+    border-radius: 16px;
+}
+
+ion-img {
+    width: 13px;
+}
+
+.bookmark:hover {
+    background-color: #f3f3f3;
+}
+
+.bookmarks-info {
+    color: var(--ion-color-black);
+    font-family: DINNextLTPro-Regular;
+    font-size: 15px;
+    text-decoration: none;
+}
+
+.header-row {
+    margin-bottom: 5px;
+}
+
+ion-img:hover {
+    filter: invert(25%) sepia(51%) saturate(2878%) hue-rotate(346deg) brightness(104%) contrast(97%);
+}
+
+.img-col {
+    display: flex;
+    justify-content: flex-end;
+}

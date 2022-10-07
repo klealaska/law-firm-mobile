@@ -1,0 +1,135 @@
+<ion-header>
+    <app-header></app-header>
+</ion-header>
+<ion-content>
+    <ion-grid>
+        <ion-row justify-content-end>
+            <ion-col class="user-col" size="12" size-sm="12" size-md="12">
+                <ion-label class="profile-heading">Profile</ion-label>
+            </ion-col>
+            <ion-col class="user-col" size="12" size-sm="12" size-md="12">
+                <input type='file' id="imageUpload" accept=".png, .jpg, .jpeg" #fileInput (change)="uploadFile($event)" />
+                <ion-avatar *ngIf="imagePath!=null">
+
+                    <img class="profile-section-img" [style.backgroundImage]="'url('+ imagePath +')'" style="background-size: cover;">
+                </ion-avatar>
+                <div *ngIf="imagePath==null">
+                    <ngx-avatar size="80" name="{{firstName}} {{lastName}}"></ngx-avatar>
+                </div>
+            </ion-col>
+            <ion-col class="user-col" size="12" size-sm="12" size-md="12">
+                <ion-label class="profile-heading">{{firstName}} {{lastName}}</ion-label>
+            </ion-col>
+            <ion-col class="user-col" size="12" size-sm="12" size-md="12">
+                <ion-label class="user-category">{{userCategoryName}}</ion-label>
+            </ion-col>
+            <ion-col class="user-col" size="12" size-sm="12" size-md="12">
+                <ion-button class="login-register-buttons register-button profile-button" size="small" (click)="fileInput.click()">Upload photo
+                </ion-button>
+            </ion-col>
+            <ion-col class="user-col" size="12" size-sm="12" size-md="12">
+                <ion-button class="login-register-buttons register-button profile-button" size="small" (click)="uploadImage()">Save photo
+                </ion-button>
+            </ion-col>
+            <ion-col class="user-col" size="12" size-sm="12" size-md="12">
+                <ion-button class="login-register-buttons register-button profile-button" size="small" (click)="removeImage()">Delete
+                </ion-button>
+            </ion-col>
+            <ion-col class="user-col" size="12" size-sm="12" size-md="12">
+                <ion-button class="login-register-buttons reset-button profile-button" color="dark" fill="outline" size="small" (click)="presentModal()">
+                    Change password
+                </ion-button>
+            </ion-col>
+        </ion-row>
+        <form name="form" #f="ngForm">
+            <ion-row justify-content-end>
+                <ion-col class="form-header-col" size="12" size-sm="12" size-md="12">
+                    <ion-label class="form-header">Basic info</ion-label>
+                    <img class="edit-icon" src="/assets/images/edit.svg">
+                    <hr class="horizontal-line">
+                </ion-col>
+                <ion-col size="12" size-sm="12" size-md="12">
+                    <ion-label class="form-label">First Name *</ion-label>
+                    <ion-input type="text" name="firstName" [(ngModel)]="firstName" required>
+                    </ion-input>
+                </ion-col>
+                <ion-col size="12" size-sm="12" size-md="12">
+                    <ion-label class="form-label">Last Name *</ion-label>
+                    <ion-input type="text" name="lastName" [(ngModel)]="lastName" required>
+                    </ion-input>
+                </ion-col>
+                <ion-col size="12" size-sm="12" size-md="12">
+                    <ion-label class="form-label">Email Address *</ion-label>
+                    <ion-input type="text" name="email" [(ngModel)]="email" [readonly]="true" required email>
+                    </ion-input>
+                </ion-col>
+                <ion-col class="form-header-col" size="12" size-sm="12" size-md="12">
+                    <ion-label class="form-header">About me</ion-label>
+                    <img class="edit-icon" src="/assets/images/edit.svg">
+                    <hr class="horizontal-line">
+                </ion-col>
+                <ion-col size="12" size-sm="12" size-md="12">
+                    <ion-label class="form-label">Profession *</ion-label>
+                    <ion-item>
+                        <ion-select interface="action-sheet" [(ngModel)]="current_category" name="category" required>
+                            <ion-select-option *ngFor="let userCategory of userCategories; let i = index" [value]="userCategory">
+                                {{userCategory.name}}
+                            </ion-select-option>
+                        </ion-select>
+                    </ion-item>
+                </ion-col>
+                <ion-col size="12" size-sm="12" size-md="12">
+                    <ion-label class="form-label">Company *</ion-label>
+                    <ion-input type="text" name="company" [(ngModel)]="company" required>
+                    </ion-input>
+                </ion-col>
+                <ion-col size="12" size-sm="12" size-md="12">
+                    <ion-label class="form-label">Industry *</ion-label>
+                    <ion-item>
+                        <ion-select interface="action-sheet" [(ngModel)]="current_group" name="group" required>
+                            <ion-select-option *ngFor="let userGroup of userGroups" [value]="userGroup">
+                                {{userGroup.name}}</ion-select-option>
+                        </ion-select>
+                    </ion-item>
+                </ion-col>
+                <ion-col class="form-header-col" size="12" size-sm="12" size-md="12">
+                    <ion-label class="form-header">Notification settings</ion-label>
+                    <img class="edit-icon" src="/assets/images/edit.svg">
+                    <hr class="horizontal-line">
+                </ion-col>
+                <ion-col size="12" size-sm="12" size-md="12" *ngIf="notificationRules!=null">
+                    <ion-label class="form-label">Important tax date notification</ion-label>
+                    <ion-toggle color="success" checked="{{notificationRules['IMPORTANT_TAX_DATE']}}" mode="md" (ionChange)="notificationSliderChanged('IMPORTANT_TAX_DATE')">
+                    </ion-toggle>
+                </ion-col>
+                <ion-col size="12" size-sm="12" size-md="12" *ngIf="notificationRules!=null">
+                    <ion-label class="form-label">General notification</ion-label>
+                    <ion-toggle color="success" checked="{{notificationRules['GENERAL']}}" mode="md" (ionChange)="notificationSliderChanged('GENERAL')"></ion-toggle>
+                </ion-col>
+            </ion-row>
+            <ion-row>
+                <ion-col size-xs="10" size-sm="11" size-md="11">
+                    <ion-label class="form-label">Prefered Language</ion-label>
+                </ion-col>
+                <ion-col size-xs="2" size-sm="1" size-md="1" class="no-padding">
+                    <ion-segment value="language" mode="ios" [(ngModel)]="preferedLanguage" name="segmentModel">
+                        <ion-segment-button value="sq-AL" class="no-margin al-button" (click)="setPreferedLanguage(1)">
+                            <ion-label>AL</ion-label>
+                        </ion-segment-button>
+                        <ion-segment-button value="en-US" class="no-margin en-button " (click)="setPreferedLanguage(2) ">
+                            <ion-label>EN</ion-label>
+                        </ion-segment-button>
+                    </ion-segment>
+                </ion-col>
+            </ion-row>
+            <ion-row>
+                <ion-col size="12 " size-sm="12 " size-md="12 ">
+                    <ion-button class="login-register-buttons register-button save-button " size="small " [disabled]="f.invalid " (click)="editProfile() ">Save
+                    </ion-button>
+                </ion-col>
+            </ion-row>
+
+
+        </form>
+    </ion-grid>
+</ion-content>

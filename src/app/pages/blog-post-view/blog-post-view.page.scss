@@ -1,0 +1,252 @@
+ion-grid {
+    padding: 5px 10px 5px 10px;
+}
+
+.blog-post-img {
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    height: 20vh;
+}
+
+.tags {
+    background-color: #97add645;
+    color: #5e8bdf;
+    border-radius: 3px;
+    margin-right: 15px;
+    font-size: 12px;
+    padding: 5px;
+}
+
+.blog-post-title {
+    font-size: 1rem;
+    color: var(--ion-color-black);
+    margin-top: 17px;
+    font-family: DINNextLTPro-Bold;
+    text-transform: uppercase;
+}
+
+.publish-info {
+    font-size: 14px;
+    font-family: DINregular;
+    color: var(--ion-color-black);
+}
+
+.authors {
+    font-size: 14px;
+    font-family: DINNextLTPro-Bold;
+    color: var(--ion-color-black);
+    transform: translate(0px, 2px);
+}
+
+.comment-img {
+    padding: 0 5px 0 10px;
+    transform: translate(0px, 4px);
+}
+
+.comment-span {
+    font-size: 14px;
+    color: #000000;
+    font-family: DINregular;
+}
+
+ion-avatar {
+    width: 30px;
+    height: 30px;
+}
+
+.add-comment {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.post-span {
+    float: right;
+    font-size: 14px;
+    color: #5e8bdf;
+    font-family: DINregular;
+}
+
+ion-textarea {
+    font-size: 14px;
+    color: #000000;
+    font-family: DINregular;
+    margin-left: 10px;
+}
+
+.comment-content {
+    background: #f3f6f8;
+}
+
+.comment-date {
+    float: right;
+    font-size: 12px;
+    font-family: "Open Sans", sans-serif;
+    font-weight: lighter;
+    color: var(--ion-color-black);
+}
+
+.ellips-icon {
+    font-size: 7px;
+    padding: 0 5px;
+}
+
+.username {
+    font-size: 15px;
+    font-family: DINNextLTPro-Regular;
+    color: var(--ion-color-black);
+}
+
+.proffesion-content {
+    font-size: 14px;
+    font-family: DINregular;
+    font-weight: lighter;
+    color: var(--ion-color-black);
+}
+
+.reply-comment {
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-right: none;
+}
+
+@media screen and (max-width: 520px) {
+    .reply-comment {
+        margin-left: 15px;
+    }
+}
+
+.reply-post {
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-left: none;
+}
+
+ion-select {
+    width: 100%;
+    justify-content: center;
+}
+
+.comment-grid {
+    margin-bottom: 5rem;
+}
+
+.fab-button {
+    --background: #f3f6f8 !important;
+    --color: var(--ion-color-black);
+    width: 22px;
+    height: 12px;
+}
+
+.edit-textarea {
+    border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.proff-col {
+    margin-top: -13px;
+}
+
+.auth-category {
+    color: #1c1c1c;
+}
+
+@media screen and (max-width: 444px) and (orientation: portrait) {
+    .comment-col,
+    .reply-col {
+        padding-left: 15px;
+    }
+}
+
+.Yellow {
+    color: var(--ion-color-white);
+    position: relative;
+}
+
+.Yellow::after {
+    background-color: #f0ab00;
+    content: "";
+    display: block;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    width: 100%;
+    height: 100%;
+    opacity: 0.4;
+    z-index: 5;
+}
+
+.Blue {
+    color: var(--ion-color-white);
+    position: relative;
+}
+
+.Blue::after {
+    background-color: var(--ion-color-blue-rgb);
+    content: "";
+    display: block;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    width: 100%;
+    height: 100%;
+    opacity: 0.4;
+    z-index: 5;
+}
+
+.LightBlue {
+    color: var(--ion-color-white);
+    position: relative;
+}
+
+.LightBlue::after {
+    background-color: rgba(92, 136, 218);
+    content: "";
+    display: block;
+    position: absolute;
+    left: 0px;
+    right: 0px;
+    width: 100%;
+    height: 100%;
+    opacity: 0.4;
+    z-index: 5;
+}
+
+.Red {
+    color: var(--ion-color-white);
+    position: relative;
+}
+
+.Red::after {
+    background-color: rgba(170, 39, 47);
+    content: "";
+    display: block;
+    position: absolute;
+    left: 0px;
+    right: 0px;
+    width: 100%;
+    height: 100%;
+    opacity: 0.4;
+    z-index: 5;
+}
+
+.Transparent {
+    color: var(--ion-color-white);
+    position: relative;
+    z-index: 999;
+}
+
+.Transparent::after {
+    background-color: rgba(246, 250, 255);
+    content: "";
+    display: block;
+    position: absolute;
+    left: 0px;
+    right: 0px;
+    width: 100%;
+    height: 100%;
+    opacity: 0.4;
+    z-index: 5;
+}
+
+.disableIcon {
+    pointer-events: none;
+}

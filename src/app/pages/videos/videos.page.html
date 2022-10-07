@@ -1,0 +1,19 @@
+<ion-header>
+    <app-header></app-header>
+</ion-header>
+<ion-content>
+    <ion-grid>
+        <ion-row justify-content-end class="header-row">
+            <ion-col class="videos-col" size="12" size-sm="12" size-md="12">
+                <ion-label class="videos-header">Videos</ion-label>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+    <ion-list lines="none">
+        <ion-item class="card video-shadow" *ngFor="let video of videos">
+            <div class="video-container">
+                <iframe [src]="video.link" frameborder="0" width="560" height="315"></iframe>
+            </div>
+        </ion-item>
+    </ion-list>
+</ion-content>

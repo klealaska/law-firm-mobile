@@ -1,0 +1,27 @@
+ion-item {
+    font-size: 0.85rem;
+    text-decoration: none;
+    font-family: DINregular;
+    --min-height: 0px;
+    margin-bottom: 8px;
+    transition: .3s ease-in-out;
+}
+
+ion-label {
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    color: #AA272F;
+    font-family: DINNextLTPro-Regular;
+}
+
+ion-list {
+    line-height: 33px;
+}
+
+.active {
+    color: #AA272F !important;
+    color: #AA272F !important;
+    border: 2px solid #AA272F !important;
+    border-width: 0 0 0 2px !important;
+    margin-left: 16px;
+}

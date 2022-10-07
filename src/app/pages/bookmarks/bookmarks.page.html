@@ -1,0 +1,29 @@
+<ion-header>
+    <app-header></app-header>
+</ion-header>
+
+<ion-content>
+    <ion-grid>
+        <ion-row justify-content-end class="header-row">
+            <ion-col class="bookmarks-col" size="12" size-sm="12" size-md="12">
+                <ion-label class="bookmarks-header">Bookmarks</ion-label>
+            </ion-col>
+        </ion-row>
+        <ion-row justify-content-end *ngIf="bookmarks.length==0">
+            <ion-col class="bookmarks-col">
+                <ion-label class="bookmark-content no-date-bookmark"> There is no data!</ion-label>
+            </ion-col>
+        </ion-row>
+        <ion-row *ngFor="let bookmark of bookmarks" class="bookmark">
+            <ion-col size="11">
+                <a class="bookmarks-info" [attr.href]="bookmark.url">{{bookmark.lawArticleName}}</a>
+            </ion-col>
+            <ion-col size="1" class="img-col">
+                <ion-img src="assets/images/trash.svg" (click)="deleteBookmark(bookmark.lawArticleId)"></ion-img>
+            </ion-col>
+            <ion-col>
+                <hr class="horizontal-line">
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+</ion-content>

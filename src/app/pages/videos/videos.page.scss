@@ -1,0 +1,41 @@
+.header-row {
+    margin-bottom: 5px;
+}
+
+.videos-col {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.videos-header {
+    font-size: 15px;
+    color: var(--ion-color-black);
+    font-family: DINNextLTPro-Regular;
+    text-transform: uppercase;
+}
+
+.video-shadow {
+    margin: -19px 20px 20px 0px !important;
+}
+
+.video-container {
+    padding-bottom: 65%;
+    height: 0;
+    overflow: hidden;
+}
+
+.video-container iframe,
+.video-container object,
+.video-container embed {
+    position: absolute;
+    padding: 5px 0;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+ion-list {
+    padding-top: 0;
+}

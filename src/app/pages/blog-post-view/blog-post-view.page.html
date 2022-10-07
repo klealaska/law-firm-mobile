@@ -1,0 +1,203 @@
+<ion-header>
+    <app-header></app-header>
+</ion-header>
+<ion-content>
+    <!-- Breadcrumb -->
+    <ul class="breadcrumb">
+        <li><a [routerLink]="['/blog-posts']">Këndi i diskutimeve</a>
+            <ion-icon name="chevron-forward-outline"></ion-icon>
+        </li>
+        <li><a href="#">{{title}}</a>
+        </li>
+    </ul>
+    <!-- end Breadcrumb -->
+    <ion-grid>
+        <ion-row>
+            <ion-col class="no-padding">
+                <div *ngIf="imageUrl!=null" class="blog-post-img {{colorOverlay}}" [style.background-image]="'url('+imageUrl +')'"></div>
+            </ion-col>
+        </ion-row>
+        <ion-row>
+            <h3 class="blog-post-title">{{title}}</h3>
+        </ion-row>
+        <ion-row>
+            <span class="publish-info">Published on {{publishedDate |date}} |
+                Published by &nbsp; </span>
+            <ng-container *ngFor="let author of authors;index as i">
+                <a *ngIf="author.authorBioLink!=null" href="{{author.authorBioLink}}" target="_blank" class="publish-info">
+                    {{author.authorName}}
+                </a>
+                <span *ngIf="author.authorBioLink==null" class="authors">
+                    {{author.authorName}}
+                </span><span *ngIf="i < authors.length-1">,</span>
+            </ng-container>
+        </ion-row>
+        <ion-row>
+            <span class="publish-info" *ngIf="attachments.length>0">Documents :&nbsp;</span>
+            <ng-container *ngFor="let attachment of attachments;index as i">
+                <a href="{{attachment}}" target="_blank" class="publish-info">
+                    Document&nbsp;{{i+1}}
+                </a>
+                <span *ngIf="i < attachments.length-1">,&nbsp;</span>
+            </ng-container>
+        </ion-row>
+        <ion-row>
+            <div [innerHTML]="description |safeHtml"></div>
+        </ion-row>
+        <ion-row>
+            <div *ngFor="let tag of tagList">
+                <span class="tags" (click)="openTagsModal(tag)">{{tag.name}}
+                </span>
+            </div>
+        </ion-row>
+        <hr class="horizontal-line">
+    </ion-grid>
+    <div *ngIf="userService.isLoggedIn()" (click)="openCommentInput()">
+        <img class="comment-img" src="assets/images/comment.svg">
+        <span class="comment-span">Comment</span>
+    </div>
+    <hr class="horizontal-line" *ngIf="userService.isLoggedIn()">
+    <ion-grid class="comment-grid">
+        <!-- Add comment -->
+        <ion-row *ngIf="showCommentInput" class="add-comment">
+            <ion-col size="1">
+                <ion-avatar *ngIf="profileImgUrl!=null"><img [src]="profileImgUrl">
+                </ion-avatar>
+                <ion-avatar *ngIf="profileImgUrl==null">
+                    <ngx-avatar name="{{firstName}} {{lastName}}" size="30"></ngx-avatar>
+                </ion-avatar>
+            </ion-col>
+            <ion-col size="9">
+                <ion-textarea class="ion-input no-margin" placeholder="Add a comment..." [(ngModel)]="commentContent">
+                </ion-textarea>
+            </ion-col>
+            <ion-col size="2">
+                <span [hidden]="!commentContent" class="post-span" (click)="onComment()">Post</span>
+            </ion-col>
+        </ion-row>
+        <!-- Comments section -->
+        <ng-container *ngFor="let commentThread of commentThreads[0];let i=index">
+            <ion-row>
+                <ion-col size="1">
+                    <ion-avatar *ngIf="commentThread.comment.avatar!=null"><img [src]="commentThread.comment.avatar">
+                    </ion-avatar>
+                    <ion-avatar *ngIf="commentThread.comment.avatar==null">
+                        <ngx-avatar name="{{commentThread.comment.authorName}}" size="30"></ngx-avatar>
+                    </ion-avatar>
+                </ion-col>
+                <ion-col size="11" class="comment-col">
+                    <ion-row class="comment-content">
+                        <ion-col size="6"><span class="username">{{commentThread.comment.authorName}}
+                                {{commentThread.comment.authorLastName}}</span></ion-col>
+                        <ion-col size="6">
+                            <span class="comment-date"> {{commentThread.comment.createdOn |date: 'dd/MM/yyyy'}} &nbsp;
+                                <ion-icon name="ellipsis-horizontal-outline"
+                                    *ngIf="canEdit &&commentThread.comment.author===userEmail"
+                                    [ngClass]="{'disableIcon': commentThread.comment.author!=userEmail}"
+                                    (click)="openCommentAlert(commentThread.id,commentThread.comment)">
+                                </ion-icon>
+                            </span> </ion-col>
+                        <ion-col size="12" class="proff-col"><span class="proffesion-content auth-category">{{commentThread.comment.authorCategory}}</span>
+                        </ion-col>
+                        <ion-col><span *ngIf="!commentThread.comment.editMode" class="proffesion-content">{{commentThread.comment.content}}</span></ion-col>
+                    </ion-row>
+                </ion-col>
+            </ion-row>
+            <!-- Edit comment -->
+            <ion-row *ngIf="commentThread.comment.editMode">
+                <ion-col offset="1" size-sm="6" class="reply-comment">
+                    <ion-textarea [(ngModel)]="editCommentContent" type="text" placeholder="Edit comment..." class="ion-input no-margin">
+                    </ion-textarea>
+                </ion-col>
+                <ion-col size-sm="5" class="reply-post">
+                    <span [hidden]="!editCommentContent" class="post-span" (click)="onUpdateComment(commentThread.comment,commentThread.id, 0)">Post</span>
+                </ion-col>
+            </ion-row>
+            <ion-row>
+                <ion-col offset="1">
+                    <a [routerLink]="" (click)="upvote(commentThread.id,commentThread.comment, 0)">
+                        <img *ngIf="!commentThread.comment.hasUpvoted" src="assets/images/like.svg">
+                        <img *ngIf="commentThread.comment.hasUpvoted" src="assets/images/blueLike.svg">
+                    </a>
+                    <ion-icon name="ellipse" class="ellips-icon"></ion-icon>
+                    <span class="comment-img proffesion-content">{{commentThread.comment.upvotes.length}}
+                        upvotes </span>|
+                    <a (click)="openReplyInput(i)" role="button">
+                        <img class="comment-img" src="assets/images/comment.svg">
+                    </a>
+                    <ion-icon name="ellipse" class="ellips-icon"></ion-icon>
+                    <span class="proffesion-content">{{commentThread.comment.replies.length}} replies </span>
+                </ion-col>
+            </ion-row>
+            <!-- Add reply comment -->
+            <ion-row *ngIf="showReplyInput && index===i">
+                <ion-col size="1">
+                    <ion-avatar *ngIf="profileImgUrl!=null"><img [src]="profileImgUrl">
+                    </ion-avatar>
+                    <ion-avatar *ngIf="profileImgUrl==null">
+                        <ngx-avatar name="{{firstName}} {{lastName}}" size="30"></ngx-avatar>
+                    </ion-avatar>
+                </ion-col>
+                <ion-col size-sm="9" size-xs="6" size="9" class="reply-comment">
+                    <ion-textarea class="ion-input no-margin" placeholder="Add a comment..." [(ngModel)]="replyCommentContent"></ion-textarea>
+                </ion-col>
+                <ion-col size-sm="2" size-xs="4" size="2" class="reply-post">
+                    <span [hidden]="!replyCommentContent" class="post-span" (click)="onReplyComment(commentThread.id,commentThread.comment.id)">Post</span>
+                </ion-col>
+            </ion-row>
+            <!-- Reply comments section -->
+            <ng-container *ngFor="let reply of commentThread.comment.replies">
+                <ion-row>
+                    <ion-col size="1" offset="1">
+                        <ion-avatar *ngIf="reply.avatar!=null">
+                            <img [src]="reply.avatar">
+                        </ion-avatar>
+                        <ion-avatar *ngIf="reply.avatar==null">
+                            <ngx-avatar name="{{reply.authorName}}" size="30"></ngx-avatar>
+                        </ion-avatar>
+                    </ion-col>
+                    <ion-col size="10" class="reply-col">
+                        <ion-row class="comment-content">
+                            <ion-col size="6"><span class="username">{{reply.authorName}}
+                                    {{reply.authorLastName}}</span></ion-col>
+                            <ion-col size="6">
+                                <span class="comment-date">{{reply.createdOn |date: 'dd/MM/yyyy'}} &nbsp;
+                                    <ion-icon name="ellipsis-horizontal-outline"
+                                        *ngIf="canEditReply&&reply.author===userEmail"
+                                        [ngClass]="{'disableIcon': reply.author!=userEmail}"
+                                        (click)="openReplyAlert(commentThread.id,commentThread.comment.id,reply)">
+                                    </ion-icon>
+                                </span>
+                            </ion-col>
+                            <ion-col size="12" class="proff-col"><span class="proffesion-content auth-category">{{reply.authorCategory}}</span>
+                            </ion-col>
+                            <ion-col><span *ngIf="!reply.editMode" class="proffesion-content">{{reply.content}}</span>
+                            </ion-col>
+                        </ion-row>
+                        <!-- Edit reply comment -->
+                        <ion-row *ngIf="reply.editMode">
+                            <ion-col size-sm="7" class="reply-comment">
+                                <ion-textarea [(ngModel)]="editReplyContent" type="text" placeholder="Edit comment..." class="ion-input no-margin">
+                                </ion-textarea>
+                            </ion-col>
+                            <ion-col size-sm="5" class="reply-post">
+                                <span [hidden]="!editReplyContent" class="post-span" (click)="onUpdateComment(reply,commentThread.id, commentThread.comment.id)">Post</span>
+                            </ion-col>
+                        </ion-row>
+                        <ion-row>
+                            <ion-col>
+                                <a [routerLink]="" (click)="upvote(commentThread.id, reply, commentThread.comment.id )">
+                                    <img *ngIf="!reply.hasUpvoted" src="assets/images/like.svg">
+                                    <img *ngIf="reply.hasUpvoted" src="assets/images/blueLike.svg">
+                                </a>
+                                <ion-icon name="ellipse" class="ellips-icon"></ion-icon>
+                                <span class="comment-img proffesion-content">{{reply.upvotes.length}} upvotes</span>
+                            </ion-col>
+                        </ion-row>
+                    </ion-col>
+                </ion-row>
+            </ng-container>
+            <!-- End reply comment -->
+        </ng-container>
+    </ion-grid>
+</ion-content>

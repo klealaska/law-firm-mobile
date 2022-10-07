@@ -1,0 +1,42 @@
+.time {
+    background-color: #f4f4f4;
+    color: var(--ion-color-black);
+    border-radius: 14px;
+    font-size: 12px;
+    padding: 5px;
+    font-size: 12px;
+    font-family: DINregular;
+}
+
+.time-col {
+    text-align: right;
+}
+
+.title {
+    font-size: 15px;
+    font-family: DINBold;
+}
+
+.content {
+    font-size: 14px;
+    font-family: DINregular;
+}
+
+ion-title {
+    padding: 5px;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    color: var(--ion-color-black);
+    font-family: DINregular;
+}
+
+.close-button {
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    --color: var(--ion-color-black);
+    font-family: DINregular;
+}
+
+.no-notif {
+    color: #6c757d!important;
+}

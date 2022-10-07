@@ -1,0 +1,114 @@
+.user-col {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+ion-avatar {
+    width: 80px;
+    height: 80px;
+}
+
+.register-button {
+    --background: var(--ion-color-black-tint);
+}
+
+.reset-button {
+    --border-width: 1px;
+}
+
+.edit-icon {
+    width: 0.9rem;
+    float: right;
+}
+
+ion-input {
+    border-radius: 0px;
+    border: 0.8px solid #E3E3E3;
+    font-size: 14px;
+    height: calc(1.5em + .75rem + 2px);
+    font-family: DINregular;
+}
+
+input {
+    display: none;
+}
+
+ion-select {
+    padding: 0;
+    color: var(--ion-color-grey);
+    font-size: 14px;
+    font-family: DINregular;
+    margin: 0 0 10px 0;
+    width: 100%;
+    max-width: 100%;
+}
+
+.save-button {
+    margin-top: 15px;
+    float: right;
+    font-size: 0.8rem;
+    padding: 0;
+}
+
+ion-item {
+    border-radius: 0px;
+    border: 0.8px solid #E3E3E3;
+    height: calc(1.5em + .75rem + 2px);
+}
+
+.profile-heading {
+    font-size: 15px;
+    color: var(--ion-color-black);
+    font-family: DINNextLTPro-Regular;
+}
+
+.user-category {
+    font-size: 13px;
+    color: #e0e0e0;
+    font-family: DINNextLTPro-Regular;
+}
+
+.profile-button {
+    font-size: 0.75rem;
+    width: 140px;
+    padding: 0;
+    margin: 0;
+}
+
+.form-header {
+    font-size: 15px;
+    font-family: DINBold;
+}
+
+.form-header-col {
+    margin-top: 15px;
+}
+
+.form-label {
+    color: var(--ion-color-grey-tint);
+    font-size: 14px;
+    font-family: DINNextLTPro-Regular;
+}
+
+ion-toggle {
+    float: right;
+    padding: 5px;
+}
+
+.al-button {
+    --padding-start: 3.5rem;
+    --color-checked: var(--ion-color-white);
+    --background-checked: var(--ion-color-black-tint);
+    --indicator-color: transparent !important;
+    --indicator-color-checked: transparent !important;
+}
+
+.en-button {
+    --padding-end: 3.5rem;
+    --color-checked: var(--ion-color-white);
+    --background-checked: var(--ion-color-black-tint);
+    --indicator-color: transparent !important;
+    --indicator-color-checked: transparent !important;
+}

@@ -1,0 +1,27 @@
+ion-title {
+    padding: 5px;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    color: var(--ion-color-black);
+    font-family: DINregular;
+}
+
+.close-button {
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    --color: var(--ion-color-black);
+    font-family: DINregular;
+}
+
+ion-label {
+    font-family: DINregular !important;
+    font-size: 1rem !important;
+}
+
+span {
+    font-family: DINregular !important;
+    font-size: 1rem !important;
+    color: #154273;
+    text-decoration: underline;
+    user-select: text;
+}

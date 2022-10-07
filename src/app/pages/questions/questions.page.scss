@@ -1,0 +1,93 @@
+.header-row {
+    margin-bottom: 5px;
+}
+
+.q-col {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.q-header {
+    font-size: 15px;
+    color: var(--ion-color-black);
+    font-family: DINNextLTPro-Regular;
+    text-transform: uppercase;
+}
+
+.form-grid {
+    background-color: #f6faff;
+    margin: 0 10px 0 10px;
+}
+
+ion-item {
+    border-radius: 0px;
+    border: 0.8px solid #E3E3E3;
+    height: calc(1.5em + .75rem + 2px);
+    width: 100%;
+    margin-bottom: 17px;
+}
+
+form {
+    margin: 17px 10px 0 10px;
+}
+
+.form-label {
+    font-family: DINNextLTPro;
+    font-size: 15px;
+    color: #003366;
+    font-weight: normal;
+    margin-top: 20px;
+}
+
+ion-input {
+    border-radius: 0px;
+    border: 0.8px solid #E3E3E3;
+    font-size: 14px;
+    height: calc(1.5em + .75rem + 2px);
+    background-color: white;
+    margin-top: 5px;
+}
+
+ion-textarea {
+    border-radius: 0px;
+    border: 0.8px solid #E3E3E3;
+    font-size: 14px;
+    height: calc(6.5em + .75rem + 2px);
+    background-color: white;
+    margin-top: 5px;
+}
+
+ion-checkbox {
+    transform: translate(-2px, 4px);
+    --size: 0.9rem;
+}
+
+.register-button {
+    --background: var(--ion-color-black-tint);
+}
+
+.contact-form-mandatory {
+    color: #003478;
+    font-size: 15px;
+    font-weight: lighter;
+    font-family: DINNextLTPro;
+}
+
+.contact-form-para {
+    color: #003478;
+    font-size: 15px;
+    line-height: 25px;
+    font-weight: lighter;
+    font-family: DINNextLTPro;
+}
+
+ion-select {
+    padding: 0;
+    color: var(--ion-color-grey);
+    font-size: 14px;
+    font-family: DINregular;
+    margin: 0 0 10px 0;
+    width: 100%;
+    max-width: 100%;
+}

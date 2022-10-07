@@ -1,0 +1,64 @@
+<ion-header>
+    <app-header></app-header>
+</ion-header>
+<ion-content>
+    <ion-grid>
+        <ion-row>
+            <ng-container *ngFor="let data of lawData;let i=index" [ngSwitch]="data.lawName">
+                <ion-col [attr.size-md]="lawData.length==4 ? 3 : (lawData.length==3)?4:(lawData.length==2)?6:12" size-sm="12" size="12">
+                    <ion-card *ngIf="data.imageUrl!=null" class="home-card {{data.colorOverlay}}" [style.background-image]="'url('+ data.imageUrl +')'" style="--background:no-repeat center/cover;">
+                        <ion-card-header>
+                            <ion-row *ngSwitchCase="'ACCOUNTING'"> <img src="/assets/images/Group465.png">
+                                <ion-card-subtitle>{{data.lawName}}</ion-card-subtitle>
+                            </ion-row>
+                            <ion-row *ngSwitchCase="'FISCAL_LEGISLATION'"> <img src="/assets/images/TAXES.png">
+                                <ion-card-subtitle>{{data.lawName}}</ion-card-subtitle>
+                            </ion-row>
+                            <ion-row *ngSwitchCase="'CUSTOM'"> <img src="/assets/images/Subtraction5.png">
+                                <ion-card-subtitle>{{data.lawName}}</ion-card-subtitle>
+                            </ion-row>
+                            <ion-row *ngSwitchCase="'WORK_CODE'"> <img src="/assets/images/Path726.png">
+                                <ion-card-subtitle>{{data.lawName}}</ion-card-subtitle>
+                            </ion-row>
+                            <ion-card-title>{{data.title}}</ion-card-title>
+                        </ion-card-header>
+                        <ion-card-content>
+                            {{data.description}}
+                        </ion-card-content>
+                        <ion-button class="home-button" fill="outline" size="small" (click)="openChapter(data.lawName)">
+                            Lexo me shume
+                        </ion-button>
+                    </ion-card>
+                </ion-col>
+            </ng-container>
+        </ion-row>
+        <ion-row>
+            <ion-col>
+                <ion-card *ngIf="taxNews.imageUrl!=null&&taxNews.isVisible==true" class="taxnews-card {{taxNews.colorOverlay}}" [style.background-image]="'url('+ taxNews.imageUrl +')'" style="--background:no-repeat center/cover;">
+                    <ion-card-header>
+                        <ion-row> <img class="tax-icon" src="/assets/images/Path728.png">
+                            <ion-card-subtitle>{{taxNews.lawName}}</ion-card-subtitle>
+                        </ion-row>
+                        <ion-card-title>{{taxNews.title}}</ion-card-title>
+                    </ion-card-header>
+                    <ion-card-content>
+                        {{taxNews.description}}
+                    </ion-card-content>
+                    <ion-button class="home-button" fill="outline" size="small" (click)="goToTaxNews()">Lexo me shume
+                    </ion-button>
+                </ion-card>
+            </ion-col>
+            <ion-col>
+                <ion-card>
+                    <ion-slides pager="true" (ionSlideDidChange)="slideChanged()">
+                        <ion-slide *ngFor="let video of videos" style="background-color: black;">
+                            <iframe #video [src]="video.link" frameborder="0" allowfullscreen></iframe>
+                        </ion-slide>
+                    </ion-slides>
+                    <ion-button class="video-button" (click)="goToVideosPage()">Shiko me shume
+                    </ion-button>
+                </ion-card>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+</ion-content>

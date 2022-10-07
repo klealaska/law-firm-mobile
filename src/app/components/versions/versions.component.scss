@@ -1,0 +1,79 @@
+ion-title {
+    padding: 5px;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    color: var(--ion-color-black);
+    font-family: DINregular;
+}
+
+.close-button {
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    --color: var(--ion-color-black);
+    font-family: DINregular;
+}
+
+.mat-expansion-panel-header {
+    height: 45px !important;
+    background-color: #f3f3f370 !important;
+}
+
+mat-panel-title {
+    font-size: 0.9rem;
+    color: #101010;
+    font-family: DINBold;
+}
+
+.law-name {
+    text-align: center;
+    a {
+        font-size: 0.9rem;
+        color: #101010;
+        font-family: DINBold;
+    }
+}
+
+.details {
+    padding: 10px 0 10px 10px;
+}
+
+span {
+    font-size: 0.9rem;
+    color: #101010;
+    font-family: DINBold;
+}
+
+.mat-elevation-z8 {
+    box-shadow: 0px 5px 5px -3px rgba(0, 0, 0, 0), 0px 8px 10px 1px rgba(0, 0, 0, 0), 0px 3px 14px 2px rgba(0, 0, 0, 0.1);
+}
+
+table {
+    width: 100%
+}
+
+td {
+    cursor: pointer;
+}
+
+.viewport {
+    height: 300px;
+    width: 100%;
+}
+
+.versions-col {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.versions-content {
+    color: var(--ion-color-black);
+    font-family: DINNextLTPro-Regular;
+    font-size: 14px;
+}
+
+.no-date-versions {
+    background-color: #f3f3f3;
+    padding: 6px;
+    border-radius: 16px;
+}

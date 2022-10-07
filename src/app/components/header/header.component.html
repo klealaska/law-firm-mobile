@@ -1,0 +1,29 @@
+<ion-toolbar class="toolbar">
+    <ion-thumbnail class="logo" slot="start">
+        <img src="/assets/images/Mazars_Logo.jpg" (click)="goToHome()">
+    </ion-thumbnail>
+    <div class="languages"><a class="nav-link" [ngClass]="{'active-language': language==english}" (click)="onLanguageChange(english)">En |</a>
+        <a class="nav-link al-span" [ngClass]="{'active-language': language==albanian}" (click)="onLanguageChange(albanian)">Al</a></div>
+    <ion-buttons slot="end">
+        <ion-menu-button menu="first"></ion-menu-button>
+    </ion-buttons>
+</ion-toolbar>
+<ion-toolbar class="second-toolbar">
+    <ion-buttons slot="start">
+        <ion-menu-toggle menu="second" class="sidebar-icon">
+            <img src='/assets/images/menu.png' style="border-radius: 3px;">
+        </ion-menu-toggle>
+        <span class="sidebar-title">Menu</span>
+    </ion-buttons>
+    <ion-button class="notification-icon-button" slot="end">
+        <ion-badge class="notification-badge" color="warning" *ngIf="notificationList.length>0">
+            {{notificationList.length}}
+        </ion-badge>
+        <ion-img *ngIf="userService.isLoggedIn()" src="assets/images/bell-solid.svg" class="bell" slot="end" (click)="openNotification(notificationList)"></ion-img>
+    </ion-button>
+    <ion-avatar *ngIf="userService.isLoggedIn()&&profileImgUrl!=null" slot="end"><img (click)="navigate()" [src]="profileImgUrl">
+    </ion-avatar>
+    <ion-avatar *ngIf="profileImgUrl==null" slot="end">
+        <ngx-avatar name="{{firstName}} {{lastName}}" size="30" (click)="navigate()"></ngx-avatar>
+    </ion-avatar>
+</ion-toolbar>

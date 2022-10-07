@@ -1,0 +1,157 @@
+<ion-header>
+    <app-header></app-header>
+</ion-header>
+<ion-content>
+    <ion-grid>
+        <ion-row>
+            <ion-col>
+                <ion-card *ngIf="image!=null" class="banner {{color}}" [style.background-image]="'url('+ image +')'" style="--background:no-repeat center/cover;">
+                    <ion-card-header>
+                        <ion-row>
+                            <ion-card-subtitle>{{title}}</ion-card-subtitle>
+                        </ion-row>
+                        <ion-icon name="chevron-down-outline" class="chevron-icon"></ion-icon>
+                    </ion-card-header>
+                    <ion-card-content class="banner banner-content">
+                        {{description}}
+                    </ion-card-content>
+                </ion-card>
+            </ion-col>
+        </ion-row>
+        <ion-row *ngIf="latestBlogPosts.length>0">
+            <ion-col>
+                <h3 class="blog-category"><a [routerLink]="['/blog-post-list', 'latest']" style="color:#555555">Most
+                        Latest</a>
+                </h3>
+                <hr class="horizontal-line">
+            </ion-col>
+        </ion-row>
+        <ion-row *ngIf="latestBlogPosts.length>0">
+            <ng-container *ngFor="let data of latestBlogPosts">
+                <ion-col size-md="6" size-sm="12" size="12">
+                    <div [routerLink]="['/blog-post-view', data.id]">
+                        <ion-card *ngIf="data.imageUrl!=null" class="banner overlay" [style.background-image]="'url('+ data.imageUrl +')'" style="--background:no-repeat center/cover;">
+                            <ion-card-header>
+                                <ion-row>
+                                    <ion-card-subtitle class="blog-title">{{data.title}}</ion-card-subtitle>
+                                </ion-row>
+                                <ion-icon name="chevron-down-outline" class="chevron-icon"></ion-icon>
+                            </ion-card-header>
+                            <ion-card-content class="banner-content" [innerHTML]="data.description">
+                            </ion-card-content>
+                            <div *ngIf="data.imageUrl!=null" class="read-more">
+                                <ion-icon name="chevron-forward-outline"></ion-icon><a style="color:#FFFFFF;">Read
+                                    more</a>
+                            </div>
+                        </ion-card>
+                    </div>
+                    <ion-card *ngIf="data.imageUrl==null" [ngStyle]="{
+                      'background-color': (data.imageUrl==null) ? '#f5f6fa' : ''}" [routerLink]="['/blog-post-view', data.id]" class="banner">
+                        <ion-card-header>
+                            <ion-row>
+                                <ion-card-subtitle class="blog-title black">{{data.title}}</ion-card-subtitle>
+                            </ion-row>
+                            <ion-icon name="chevron-down-outline" class="black"></ion-icon>
+                        </ion-card-header>
+                        <ion-card-content class="banner-content black" [innerHTML]="data.description">
+                        </ion-card-content>
+                        <div class="read-more">
+                            <ion-icon name="chevron-forward-outline" style="color: #AA272F;"></ion-icon><a>Read
+                                more</a>
+                        </div>
+                    </ion-card>
+                </ion-col>
+            </ng-container>
+        </ion-row>
+        <ion-row *ngIf="popularBlogPosts.length>0">
+            <ion-col>
+                <h3 class="blog-category"><a [routerLink]="['/blog-post-list', 'popular']" style="color:#555555">Most
+                        popular</a>
+                </h3>
+                <hr class="horizontal-line">
+            </ion-col>
+        </ion-row>
+        <ion-row *ngIf="popularBlogPosts.length>0">
+            <ng-container *ngFor="let data of popularBlogPosts">
+                <ion-col size-md="6" size-sm="12" size="12">
+                    <div [routerLink]="['/blog-post-view', data.id]">
+                        <ion-card *ngIf="data.imageUrl!=null" class="banner overlay" [style.background-image]="'url('+ data.imageUrl +')'" style="--background:no-repeat center/cover;">
+                            <ion-card-header>
+                                <ion-row>
+                                    <ion-card-subtitle class="blog-title">{{data.title}}</ion-card-subtitle>
+                                </ion-row>
+                                <ion-icon name="chevron-down-outline" class="chevron-icon"></ion-icon>
+                            </ion-card-header>
+                            <ion-card-content class="banner-content" [innerHTML]="data.description">
+                            </ion-card-content>
+                            <div *ngIf="data.imageUrl!=null" class="read-more">
+                                <ion-icon name="chevron-forward-outline"></ion-icon><a style="color:#FFFFFF;">Read
+                                    more</a>
+                            </div>
+                        </ion-card>
+                    </div>
+                    <ion-card *ngIf="data.imageUrl==null" [ngStyle]="{
+                      'background-color': (data.imageUrl==null) ? '#f5f6fa' : ''}" [routerLink]="['/blog-post-view', data.id]" class="banner">
+                        <ion-card-header>
+                            <ion-row>
+                                <ion-card-subtitle class="blog-title black">{{data.title}}</ion-card-subtitle>
+                            </ion-row>
+                            <ion-icon name="chevron-down-outline" class="black"></ion-icon>
+                        </ion-card-header>
+                        <ion-card-content class="banner-content black" [innerHTML]="data.description">
+                        </ion-card-content>
+                        <div class="read-more">
+                            <ion-icon name="chevron-forward-outline" style="color: #AA272F;"></ion-icon><a>Read
+                                more</a>
+                        </div>
+                    </ion-card>
+                </ion-col>
+            </ng-container>
+        </ion-row>
+        <ion-row *ngIf="userService.isLoggedIn()&&onYourInterest.length>0">
+            <ion-col>
+                <h3 class="blog-category"><a [routerLink]="['/blog-post-list', 'interest']" style="color:#555555">On
+                        your interest</a>
+                </h3>
+                <hr class="horizontal-line">
+            </ion-col>
+        </ion-row>
+        <ion-row *ngIf="userService.isLoggedIn()&&onYourInterest.length>0">
+            <ng-container *ngFor="let data of onYourInterest">
+                <ion-col size-md="6" size-sm="12" size="12">
+                    <div [routerLink]="['/blog-post-view', data.id]">
+                        <ion-card *ngIf="data.imageUrl!=null" class="banner overlay" [style.background-image]="'url('+ data.imageUrl +')'" style="--background:no-repeat center/cover;">
+                            <ion-card-header>
+                                <ion-row>
+                                    <ion-card-subtitle class="blog-title">{{data.title}}</ion-card-subtitle>
+                                </ion-row>
+                                <ion-icon name="chevron-down-outline" class="chevron-icon"></ion-icon>
+                            </ion-card-header>
+                            <ion-card-content class="banner-content" [innerHTML]="data.description">
+                            </ion-card-content>
+                            <div *ngIf="data.imageUrl!=null" class="read-more">
+                                <ion-icon name="chevron-forward-outline"></ion-icon><a style="color:#FFFFFF;">Read
+                                    more</a>
+                            </div>
+                        </ion-card>
+                    </div>
+                    <ion-card *ngIf="data.imageUrl==null" [ngStyle]="{
+                      'background-color': (data.imageUrl==null) ? '#f5f6fa' : ''}" [routerLink]="['/blog-post-view', data.id]" class="banner">
+                        <ion-card-header>
+                            <ion-row>
+                                <ion-card-subtitle class="blog-title black">{{data.title}}</ion-card-subtitle>
+                            </ion-row>
+                            <ion-icon name="chevron-down-outline" class="black"></ion-icon>
+                        </ion-card-header>
+                        <ion-card-content class="banner-content black" [innerHTML]="data.description">
+                        </ion-card-content>
+                        <div class="read-more">
+                            <ion-icon name="chevron-forward-outline" style="color: #AA272F;"></ion-icon><a>Read
+                                more</a>
+                        </div>
+                    </ion-card>
+                </ion-col>
+            </ng-container>
+        </ion-row>
+    </ion-grid>
+</ion-content>

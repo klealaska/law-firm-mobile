@@ -1,0 +1,33 @@
+ion-menu-button {
+    --color: black;
+}
+
+ion-avatar {
+    width: 30px;
+    height: 30px;
+    margin-right: 12px;
+}
+
+.bell {
+    width: 16px;
+    margin-right: 5px;
+}
+
+.notification-icon-button {
+    --overflow: visible;
+    --background: transparent;
+    --box-shadow: 0;
+    --padding-end: 8px;
+    ion-badge {
+        position: absolute;
+        border-radius: 50%;
+        opacity: 0.9;
+        top: 0.1rem;
+        left: 0.6rem;
+        font-size: 9px;
+    }
+}
+
+.active-language {
+    color: #0056b3 !important;
+}
